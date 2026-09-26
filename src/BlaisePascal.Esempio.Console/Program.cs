@@ -3,15 +3,23 @@
     //Metodo di entrata per esecuzione del codice
     public static void Main()
     {
-    
-        Console.WriteLine("Benvenuto nella libreria Easy Library");
+
+        //Stampo a video il messaggio per chiedere il nome del cliente
+        Console.WriteLine("Inserisci il nome del cliente");
+        // Assegnamop il valore letto dal ReadLine() alla variabile
+        string nomeCliente = Console.ReadLine();
+
+        Console.WriteLine($"Benvenuto {nomeCliente} nella libreria Easy Library");
+        
+        Console.WriteLine("Inserisci il tipo di spedizione");
+        string tipoconsegna = Console.ReadLine();
+
+        Console.WriteLine("Inserisci il numero di pacchi acquistati");
+        int numeroPacchiComprati = int.Parse(Console.ReadLine());
 
         int costoSpedizioneSingoloPacco = 5;//Dichiarazione + assegnazione
         costoSpedizioneSingoloPacco = 10;//Assegnazione
 
-        int numeroPacchiComprati = 2;
-
-        string tipoConsegna = "Standard";//Dichiarazione
 
         int costoTotale = costoSpedizioneSingoloPacco * numeroPacchiComprati;
 
