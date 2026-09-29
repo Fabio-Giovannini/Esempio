@@ -26,8 +26,8 @@
         //Stampa a video con concatenazione di stringhe e variabili
         //$ è il carattere speciale per l'interpolazione di stringhe
         //Che permette di inserire variabili all'interno di una stringa di messaggio
-        Console.WriteLine($"Il tipo di consegna selezionato è: {tipoConsegna}, e il costo totale è: {costoTotale}$");
-        
+        Console.WriteLine($"Il tipo di consegna selezionato è: {tipoconsegna}, e il costo totale è: {costoTotale}$");
 
+        
     }
 }
