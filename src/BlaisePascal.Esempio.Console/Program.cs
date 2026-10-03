@@ -1,9 +1,11 @@
-﻿public class Program // Questa è una classe
+﻿using BlaisePascal.Esempio.Domain;
+public class Program // Questa è una classe
 {
     //Metodo di entrata per esecuzione del codice
-    public static void Main()
+    public static void Main(string[] args)
     {
 
+        /*
         //Stampo a video il messaggio per chiedere il nome del cliente
         Console.WriteLine("Inserisci il nome del cliente");
         // Assegnamop il valore letto dal ReadLine() alla variabile
@@ -26,8 +28,12 @@
         //Stampa a video con concatenazione di stringhe e variabili
         //$ è il carattere speciale per l'interpolazione di stringhe
         //Che permette di inserire variabili all'interno di una stringa di messaggio
-        Console.WriteLine($"Il tipo di consegna selezionato è: {tipoconsegna}, e il costo totale è: {costoTotale}$");
+        Console.WriteLine($"Il tipo di consegna selezionato è: {tipoconsegna}, e il costo totale è: {costoTotale}$");*/
+        Vehicle vehicle = new Vehicle("abc");
+        //vehicle.LicensePlate = "abc";
+        string license = vehicle.LicensePlate;
 
-        
+        Console.WriteLine(license);
+
     }
 }
