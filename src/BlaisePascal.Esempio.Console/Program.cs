@@ -36,6 +36,7 @@ namespace BlaisePascal.Esempio.UIConsole
             Console.WriteLine($"Il tipo di consegna selezionato è: {tipoconsegna}, e il costo totale è: {costoTotale}$");*/
 
 
+            /*
             Vehicle vehicle = new Vehicle("abc");
             //vehicle.LicensePlate = "abc";
             string license = vehicle.LicensePlate;
@@ -47,7 +48,11 @@ namespace BlaisePascal.Esempio.UIConsole
             Console.WriteLine(vehicle1.OdometerKm);
             Console.WriteLine(vehicle1.DailyRate);
             Console.WriteLine(vehicle1.FuellLevelPercentage);
-
+            */
+            Enemy enemy = new Enemy();
+            enemy.setHealth(1);
+            Console.WriteLine($"Enemy Health: {enemy.Health}");
+            Console.WriteLine($"Enemy isAlive: {enemy.isAlive()}");
         }
     }
 }

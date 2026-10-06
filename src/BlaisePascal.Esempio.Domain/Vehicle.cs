@@ -21,51 +21,86 @@ namespace BlaisePascal.Esempio.Domain
     /// </summary>
     public class Vehicle
     {
-        private int _odoneterKm;
+        private int _odometerKm;
         private double _dailyRate;
         private double _fuelLevelPercentage;
 
-
         public string LicensePlate { get; private set; }
-        public int OdometerKm 
+        public int OdometerKm
         {
-            get 
-            {  return _odoneterKm; }
+            get
+            { return _odometerKm; }
             private set
             {
-                if (value < 0) throw new ArgumentException($"value not allowd{nameof(OdometerKm)}: {value}");
+                if (value < 0)
+                    throw new ArgumentException($"value not allowed {nameof(OdometerKm)}: {value} ");
 
-                _odoneterKm = value;
-            } 
+                _odometerKm = value;
+            }
         }
-        public double DailyRate { get;  private set; }
-        public double FuellLevelPercentage {  get; private set; }
+        public double DailyRate
+        {
+            get
+            { return _dailyRate; }
+            private set
+            {
+                if (value < 0)
+                    throw new ArgumentException($"value not allowed {nameof(DailyRate)}: {value} ");
+                _dailyRate = value;
+            }
+        }
+
+        public double FuelLevelPercentage
+        {
+            get
+            { return _fuelLevelPercentage; }
+            private set
+            {
+                if (value < 0 || value > 100)
+                    throw new ArgumentException($"value not allowed {nameof(FuelLevelPercentage)}: {value} ");
+
+                _fuelLevelPercentage = value;
+            }
+        }
+
 
         /// <summary>
         /// metodo costruttore che inizializza la targa del veicolo
         /// </summary>
         /// <param name="licensePlate"></param>
-        public Vehicle(string licencePlate)
+        public Vehicle(string licensePlate)
         {
-            //TODO: Validazione della targa
-            LicensePlate = licencePlate;//chiamata ad un set
+            //TODO: validazione della targa
+            LicensePlate = licensePlate; //chiama al set           
         }
 
-        /*
         /// <summary>
         /// metodo costruttore che inizializza la targa del veicolo, il contachilometri, il prezzo giornaliero e il livello di carburante
         /// </summary>
         /// <param name="licensePlate"></param>
         /// <param name="odometerKm"></param>
         /// <param name="dailyRate"></param>
-        /// <param name="fuelLevelPercentage"></param>*/
-        
-        public Vehicle(string licencePlate, int odemtertKm, double dailyRate, double fuelPercentage) 
+        /// <param name="fuelLevelPercentage"></param>
+        public Vehicle(string licensePlate, int odometerKm,
+            double dailyRate, double fuelLevelPercentage)
         {
-            LicensePlate = licencePlate;
-            OdometerKm = odemtertKm;
+            LicensePlate = licensePlate;
+            OdometerKm = odometerKm; //chiamata al set
             DailyRate = dailyRate;
-            FuellLevelPercentage = fuelPercentage;
+            FuelLevelPercentage = fuelLevelPercentage;
+        }
+
+        public void RegisterData(int consumedKm, double consumedFuel)
+        {
+            //controlli sui parametri (argument)
+            if (consumedKm <= 0)
+                throw new ArgumentException($"value not allowed {nameof(consumedKm)}: {consumedKm} ");
+            if (consumedFuel < 0)
+                throw new ArgumentException($"value not allowed {nameof(consumedFuel)}: {consumedFuel} ");
+
+            //aggiorno lo stato dell'oggetto
+            OdometerKm += consumedKm; //chiamata al set
+            FuelLevelPercentage -= consumedFuel; //chiamate set
         }
 
     }
