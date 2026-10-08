@@ -25,7 +25,7 @@ namespace BlaisePascal.Esempio.Domain
         private double _dailyRate;
         private double _fuelLevelPercentage;
 
-        public string LicensePlate { get; private set; }
+        public string LicensePlate { get; private set; }//IMPLEMENTARE IL SET PER LA VALIDAZIONE DELLA TARGA
         public int OdometerKm
         {
             get
