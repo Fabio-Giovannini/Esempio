@@ -37,6 +37,8 @@ namespace BlaisePascal.Esempio.Domain
                 {
                     throw new ArgumentException($"value not allowed {nameof(LicensePlate)}: {value} ");
                 }
+
+                _licensePlate = licensePlate;
             }
         }
         public int OdometerKm
