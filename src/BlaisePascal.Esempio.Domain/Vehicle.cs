@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Formats.Tar;
 using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace BlaisePascal.Esempio.Domain
 {
@@ -21,11 +22,23 @@ namespace BlaisePascal.Esempio.Domain
     /// </summary>
     public class Vehicle
     {
+        public string _licensePlate;
         private int _odometerKm;
         private double _dailyRate;
         private double _fuelLevelPercentage;
 
-        public string LicensePlate { get; private set; }//IMPLEMENTARE IL SET PER LA VALIDAZIONE DELLA TARGA
+        public string LicensePlate 
+        {
+            get { return _licensePlate; }
+            private set
+            {
+                string licensePlate = value?.Trim().ToUpper();
+                if(!Regex.IsMatch(licensePlate, @"^[A-Z]{2}[0-9]{3}[A-Z]{2}$") || string.IsNullOrEmpty(licensePlate))
+                {
+                    throw new ArgumentException($"value not allowed {nameof(LicensePlate)}: {value} ");
+                }
+            }
+        }
         public int OdometerKm
         {
             get
@@ -82,9 +95,8 @@ namespace BlaisePascal.Esempio.Domain
         /// <param name="dailyRate"></param>
         /// <param name="fuelLevelPercentage"></param>
         public Vehicle(string licensePlate, int odometerKm,
-            double dailyRate, double fuelLevelPercentage)
+            double dailyRate, double fuelLevelPercentage) : this (licensePlate)
         {
-            LicensePlate = licensePlate;
             OdometerKm = odometerKm; //chiamata al set
             DailyRate = dailyRate;
             FuelLevelPercentage = fuelLevelPercentage;
