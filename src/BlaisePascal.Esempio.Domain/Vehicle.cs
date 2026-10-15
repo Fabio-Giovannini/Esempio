@@ -27,11 +27,14 @@ namespace BlaisePascal.Esempio.Domain
         private double _dailyRate;
         private double _fuelLevelPercentage;
 
+        
+        public static int MaxFuelLevelPercentage { get; } = 100;
         public string LicensePlate 
         {
             get { return _licensePlate; }
             private set
             {
+                /*
                 string licensePlate = value?.Trim().ToUpper();
                 if(!Regex.IsMatch(licensePlate, @"^[A-Z]{2}[0-9]{3}[A-Z]{2}$") || string.IsNullOrEmpty(licensePlate))
                 {
@@ -39,6 +42,16 @@ namespace BlaisePascal.Esempio.Domain
                 }
 
                 _licensePlate = licensePlate;
+                */
+
+                if (string.IsNullOrWhiteSpace(value) || value.Length != 7)
+                {
+                    throw new ArgumentException($"value not allowed {nameof(LicensePlate)}: {value} ");
+                }
+                if (!char.IsLetter(value[0]) || !char.IsLetter(value[1]) || !char.IsDigit(value[2]) || !char.IsDigit(value[3]) || !char.IsDigit(value[4]) || !char.IsLetter(value[5]) || !char.IsLetter(value[6]))
+                {
+                    throw new ArgumentException("Value is not allowed  {nameof(LicensePlate)}: {value} ");
+                }
             }
         }
         public int OdometerKm
@@ -71,7 +84,7 @@ namespace BlaisePascal.Esempio.Domain
             { return _fuelLevelPercentage; }
             private set
             {
-                if (value < 0 || value > 100)
+                if (value < 0 || value > MaxFuelLevelPercentage)
                     throw new ArgumentException($"value not allowed {nameof(FuelLevelPercentage)}: {value} ");
 
                 _fuelLevelPercentage = value;
